@@ -1,5 +1,5 @@
 {
-  "name": "vuelize",
+  "name": "vuesui",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,12 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@types/jquery": "^3.3.29",
+    "@types/materialize-css": "^1.0.6",
+    "@types/semantic-ui": "^2.2.7",
+    "jquery": "^2.1.4",
+    "materialize-css": "^1.0.0",
+    "semantic-ui": "github:thanhphongdo/semantic-ui",
     "vue": "^2.6.6",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^7.0.0",
