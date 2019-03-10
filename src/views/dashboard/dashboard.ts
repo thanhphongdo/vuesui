@@ -10,6 +10,6 @@ import template from './dashboard.vue';
         };
     },
     destroyed() {
-    },
+    }
 })
 export default class Dashboard extends Vue { }
