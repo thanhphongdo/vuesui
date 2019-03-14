@@ -76,9 +76,10 @@
             </div>
         </Accordion>
         <div>
-            <Checkbox v-for="(item, index) in checks" :key="index" v-model="item.checked" :val="item.value"></Checkbox>
+            <Checkbox v-for="(item, index) in checks" :key="index" v-model="radio" :val="item.value" radio="true"></Checkbox>
             <!-- <div v-for="item in checks" :key="item">{{item.checked}}</div> -->
         </div>
+        <div>{{radio}}</div>
         <div>{{checks}}</div>
     </div>
 

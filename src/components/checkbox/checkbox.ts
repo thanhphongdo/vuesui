@@ -12,34 +12,38 @@ export default class Checkbox extends BaseVue {
 
     @Prop() private val!: any;
 
+    @Prop() private radio!: boolean;
+
     @Prop() private checked!: boolean;
 
     private elProp!: {
         activeIndex: number;
+        radio: boolean;
+        checked: boolean;
     }
 
     data() {
         const self = this;
         return {
             elProp: {
+                radio: this.parseBool(this.radio || false),
                 checked: this.parseBool(this.checked || false)
             }
         };
     }
 
     mounted() {
+        $(this.$refs.checkbox).change(()=>{
+            console.log('change');
+        })
     }
 
     check(event: any) {
-        // const self = this;
-        // console.log(event);
-        // // this.value.push(1);
-        // this.value.splice(0, this.value.length);
-        // this.value = [];
-        // $('input[type=checkbox][name=example]:checked').each((item: any) => {
-        //     self.value.push($(this).val());
-        // });
-        this.$emit('input', event.target.checked);
+        if (!this.elProp.radio) {
+            this.$emit('input', event.target.checked);
+        } else {
+            this.$emit('input', this.val);
+        }
     }
 
     delete() {
