@@ -33,9 +33,9 @@ export default class Checkbox extends BaseVue {
     }
 
     mounted() {
-        $(this.$refs.checkbox).change(()=>{
+        $(this.$refs.checkbox).change(() => {
             console.log('change');
-        })
+        });
     }
 
     check(event: any) {

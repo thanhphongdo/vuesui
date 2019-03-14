@@ -11,7 +11,7 @@ import Checkbox from '@/components/checkbox/checkbox.ts';
     },
     data() {
         return {
-            radio: "",
+            radio: '',
             checks: [
                 {
                     checked: false,
