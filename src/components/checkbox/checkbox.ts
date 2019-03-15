@@ -10,6 +10,10 @@ declare const $: JQueryStatic;
 export default class Checkbox extends BaseVue {
     @Prop() private value!: any;
 
+    @Prop() private name!: string;
+
+    @Prop() private label!: string;
+
     @Prop() private val!: any;
 
     @Prop() private radio!: boolean;
@@ -18,6 +22,9 @@ export default class Checkbox extends BaseVue {
 
     private elProp!: {
         activeIndex: number;
+        name: string;
+        label: string;
+        val: string;
         radio: boolean;
         checked: boolean;
     }
@@ -26,6 +33,9 @@ export default class Checkbox extends BaseVue {
         const self = this;
         return {
             elProp: {
+                name: this.name,
+                label: this.label,
+                val: this.val,
                 radio: this.parseBool(this.radio || false),
                 checked: this.parseBool(this.checked || false)
             }
@@ -33,16 +43,13 @@ export default class Checkbox extends BaseVue {
     }
 
     mounted() {
-        $(this.$refs.checkbox).change(() => {
-            console.log('change');
-        });
     }
 
     check(event: any) {
         if (!this.elProp.radio) {
             this.$emit('input', event.target.checked);
         } else {
-            this.$emit('input', this.val);
+            this.$emit('input', this.elProp.val);
         }
     }
 
