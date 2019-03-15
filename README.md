@@ -1,4 +1,4 @@
-# vuelize
+# vuesui
 
 ## Project setup
 ```
