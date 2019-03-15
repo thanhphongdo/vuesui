@@ -9,6 +9,8 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@types/jquery": "^3.3.29",
+    "jquery": "^2.1.4",
     "semantic-ui": "github:thanhphongdo/semantic-ui",
     "vue": "^2.6.6",
     "vue-class-component": "^6.0.0",
