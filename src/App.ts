@@ -1,4 +1,5 @@
 import { Component, Vue } from 'vue-property-decorator';
+import BaseVue from './components/base_vue';
 import template from '@/App.vue';
 import { mapActions, mapGetters } from 'vuex';
 import Accordion from '@/components/accordion/accordion.ts';
@@ -15,7 +16,7 @@ import Checkbox from '@/components/checkbox/checkbox.ts';
             checkedNames: [],
             checks: [
                 {
-                    checked: false,
+                    checked: true,
                     value: '1'
                 },
                 {
@@ -39,7 +40,7 @@ import Checkbox from '@/components/checkbox/checkbox.ts';
         console.log('destroyed home');
     }
 })
-export default class App extends Vue {
+export default class App extends BaseVue {
     onOpen(data: any) {
         console.log(data);
     }

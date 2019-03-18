@@ -16,7 +16,9 @@ module.exports = {
         'no-plusplus': ['off'],
         'class-methods-use-this': ['off'],
         'comma-dangle': ['error', 'never'],
-        'func-names': ['error', 'as-needed']
+        'func-names': ['error', 'as-needed'],
+        'no-param-reassign': ['off'],
+        'prefer-destructuring': ['off']
     },
     parserOptions: {
         parser: '@typescript-eslint/parser'
