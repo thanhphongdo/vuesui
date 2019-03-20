@@ -23,8 +23,18 @@ export default class Accordion extends BaseVue {
 
     @Prop() private easing!: string;// include script jquery.easing.js to define new easing type
 
+    @Prop() private preventEmit!: boolean;// include script jquery.easing.js to define new easing type
+
     private elProp!: {
         activeIndex: number;
+        exclusive: boolean;
+        on: string;
+        animateChildren: boolean;
+        closeNested: boolean;
+        collapsible: boolean;
+        duration: number;
+        easing: string;
+        preventEmit: boolean;
     }
 
     data() {
@@ -39,30 +49,48 @@ export default class Accordion extends BaseVue {
                 collapsible: this.parseBool(this.collapsible || true),
                 duration: parseInt(`${this.duration}`, 10) || 500,
                 easing: this.easing || 'easeOutQuad',
-                onOpening() {
-                    self.$emit('onOpening');
-                },
-                onOpen() {
-                    self.$emit('onOpen', self.getActiveIndex());
-                },
-                onClosing() {
-                    self.$emit('onClosing');
-                },
-                onClose() {
-                    self.$emit('onClose', self.getActiveIndex());
-                },
-                onChanging() {
-                    self.$emit('onChanging');
-                },
-                onChange() {
-                    self.$emit('onChange', self.getActiveIndex());
-                }
+                preventEmit: this.parseBool(this.preventEmit || false)
             }
         };
     }
 
     mounted() {
-        $(this.$refs.el).accordion(this.elProp);
+        const self = this;
+        $(this.$refs.el).accordion({
+            activeIndex: this.elProp.activeIndex,
+            exclusive: this.elProp.exclusive,
+            on: this.elProp.on,
+            animateChildren: this.elProp.animateChildren,
+            closeNested: this.elProp.closeNested,
+            collapsible: this.elProp.collapsible,
+            duration: this.elProp.duration,
+            easing: this.elProp.easing,
+            preventEmit: this.elProp.preventEmit,
+            onOpening() {
+                if (self.elProp.preventEmit) return;
+                self.$emit('onOpening');
+            },
+            onOpen() {
+                if (self.elProp.preventEmit) return;
+                self.$emit('onOpen', self.getActiveIndex());
+            },
+            onClosing() {
+                if (self.elProp.preventEmit) return;
+                self.$emit('onClosing');
+            },
+            onClose() {
+                if (self.elProp.preventEmit) return;
+                self.$emit('onClose', self.getActiveIndex());
+            },
+            onChanging() {
+                if (self.elProp.preventEmit) return;
+                self.$emit('onChanging');
+            },
+            onChange() {
+                if (self.elProp.preventEmit) return;
+                self.$emit('onChange', self.getActiveIndex());
+            }
+        });
         if (this.elProp.activeIndex) {
             this.open(this.elProp.activeIndex);
         }

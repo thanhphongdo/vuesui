@@ -63,43 +63,54 @@ export default class Checkbox extends BaseVueSemantic {
             uncheckable: self.elProp.uncheckable,
             fireOnInit: self.elProp.fireOnInit,
             onChange: () => {
-                self.$emit('onChange', (self.$refs.checkbox as any).checked);
                 if (!self.elProp.radio) {
                     self.$emit('input', (self.$refs.checkbox as any).checked);
                 } else {
                     self.$emit('input', self.elProp.val);
                 }
+                if (self.elProp.preventEmit) return;
+                self.$emit('onChange', (self.$refs.checkbox as any).checked);
             },
             onChecked: () => {
                 self.elProp.checked = true;
+                if (self.elProp.preventEmit) return;
                 self.$emit('onChecked', self);
             },
             onIndeterminate: () => {
+                if (self.elProp.preventEmit) return;
                 self.$emit('onIndeterminate', self);
             },
             onDeterminate: () => {
+                if (self.elProp.preventEmit) return;
                 self.$emit('onDeterminate', self);
             },
             onUnchecked: () => {
                 self.elProp.checked = false;
+                if (self.elProp.preventEmit) return;
                 self.$emit('onUnchecked', self);
             },
             beforeChecked: () => {
+                if (self.elProp.preventEmit) return;
                 self.$emit('beforeChecked', self);
             },
             beforeIndeterminate: () => {
+                if (self.elProp.preventEmit) return;
                 self.$emit('beforeIndeterminate', self);
             },
             beforeDeterminate: () => {
+                if (self.elProp.preventEmit) return;
                 self.$emit('beforeDeterminate', self);
             },
             beforeUnchecked: () => {
+                if (self.elProp.preventEmit) return;
                 self.$emit('beforeUnchecked', self);
             },
             onEnable: () => {
+                if (self.elProp.preventEmit) return;
                 self.$emit('onEnable', self);
             },
             onDisable: () => {
+                if (self.elProp.preventEmit) return;
                 self.$emit('onDisable', self.elProp.val);
             }
         });
