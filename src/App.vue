@@ -110,7 +110,7 @@
                         <div class="item">
                             <i class="dropdown icon"></i>
                             Publish To Web
-                            <div class="menu">
+                            <div class="menu left">
                                 <div class="item">Google Docs</div>
                                 <div class="item">Google Drive</div>
                                 <div class="item">Dropbox</div>
