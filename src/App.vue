@@ -125,8 +125,8 @@
                 <!-- <Selectbox>
                     <div>Slot</div>
                 </Selectbox> -->
-                <Selectbox>
-                    <select class="ui search dropdown">
+                <Selectbox ref="selectbox">
+                    <select class="ui fluid dropdown" v-model="select">
                         <option value="">State</option>
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
@@ -181,8 +181,14 @@
                         <option value="WY">Wyoming</option>
                     </select>
                 </Selectbox>
+                <Selectbox ref="selectbox2" :values="selectValues">
+                    <template v-slot:item="row">
+                        <div class="item" :data-value="row.item.value">{{row.item.name}}</div>
+                    </template>
+                </Selectbox>
             </form>
         </div>
+        <div>{{select}}</div>
         <div>{{checkedNames}}</div>
         <div>{{checks}}</div>
     </div>

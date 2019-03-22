@@ -20,6 +20,8 @@ export default class Dropdown extends BaseVueSemantic {
 
     @Prop() private placeholder!: string;
 
+    @Prop() private action!: string;
+
     @Prop() private allowTab!: boolean;
 
     @Prop() private duration!: number;
@@ -35,6 +37,7 @@ export default class Dropdown extends BaseVueSemantic {
         direction: boolean;
         keepOnScreen: boolean;
         placeholder: string;
+        action: string;
         allowTab: boolean;
         duration: number;
         transition: string;
@@ -53,6 +56,7 @@ export default class Dropdown extends BaseVueSemantic {
                 direction: this.direction || 'auto',
                 keepOnScreen: this.parseBool(this.preventEmit || true),
                 placeholder: this.placeholder || '',
+                action: this.action || 'activate',
                 allowTab: this.parseBool(this.allowTab || true),
                 duration: this.duration || 200,
                 transition: this.transition || 'auto',
@@ -70,6 +74,7 @@ export default class Dropdown extends BaseVueSemantic {
             keepOnScreen: self.elProp.keepOnScreen,
             context: window,
             placeholder: self.elProp.placeholder,
+            action: self.elProp.action,
             onChange: (value: any, text: any, $choice: any) => {
                 if (self.elProp.preventEmit) return;
                 self.$emit('onChange', {

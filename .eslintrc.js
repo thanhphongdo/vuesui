@@ -18,7 +18,8 @@ module.exports = {
         'comma-dangle': ['error', 'never'],
         'func-names': ['error', 'as-needed'],
         'no-param-reassign': ['off'],
-        'prefer-destructuring': ['off']
+        'prefer-destructuring': ['off'],
+        'import/prefer-default-export': ['off']
     },
     parserOptions: {
         parser: '@typescript-eslint/parser'

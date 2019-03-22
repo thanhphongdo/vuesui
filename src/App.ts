@@ -1,11 +1,12 @@
 import { Component, Vue } from 'vue-property-decorator';
+import { mapActions, mapGetters } from 'vuex';
 import BaseVue from './components/base_vue';
 import template from '@/App.vue';
-import { mapActions, mapGetters } from 'vuex';
 import Accordion from '@/components/accordion/accordion.ts';
 import Checkbox from '@/components/checkbox/checkbox.ts';
 import Dropdown from '@/components/dropdown/dropdown.ts';
 import Selectbox from '@/components/selectbox/selectbox.ts';
+import { SelectboxValueItem } from './components/selectbox/selectbox_interface';
 @Component({
     mixins: [template],
     components: {
@@ -31,11 +32,25 @@ import Selectbox from '@/components/selectbox/selectbox.ts';
                     checked: false,
                     value: '3'
                 }
+            ],
+            select: [],
+            selectValues: [
+                {
+                    name: 'Alabama',
+                    value: 'AL'
+                },
+                {
+                    name: 'Alaska',
+                    value: 'AK'
+                },
+                {
+                    name: 'Arizona',
+                    value: 'AZ'
+                }
             ]
         };
     },
     mounted() {
-        console.log('XXXxx');
         console.log(process.env.NODE_ENV);
         (window as any).app = this;
         (window as any).acordion = this.$refs.acordion;
@@ -47,7 +62,5 @@ import Selectbox from '@/components/selectbox/selectbox.ts';
     }
 })
 export default class App extends BaseVue {
-    onOpen(data: any) {
-        console.log(data);
-    }
+    onOpen(data: any) {}
 }
