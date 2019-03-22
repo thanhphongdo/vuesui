@@ -5,12 +5,14 @@ import { mapActions, mapGetters } from 'vuex';
 import Accordion from '@/components/accordion/accordion.ts';
 import Checkbox from '@/components/checkbox/checkbox.ts';
 import Dropdown from '@/components/dropdown/dropdown.ts';
+import Selectbox from '@/components/selectbox/selectbox.ts';
 @Component({
     mixins: [template],
     components: {
         Accordion,
         Checkbox,
-        Dropdown
+        Dropdown,
+        Selectbox
     },
     data() {
         return {
@@ -35,6 +37,7 @@ import Dropdown from '@/components/dropdown/dropdown.ts';
     mounted() {
         console.log('XXXxx');
         console.log(process.env.NODE_ENV);
+        (window as any).app = this;
         (window as any).acordion = this.$refs.acordion;
     },
     methods: {},

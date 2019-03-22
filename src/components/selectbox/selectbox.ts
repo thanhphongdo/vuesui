@@ -1,13 +1,13 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import * as jquery from 'jquery';
 import BaseVueSemantic from '../base_vue_semantic';
-import template from './dropdown.vue';
+import template from './selectbox.vue';
 
 declare const $: any;
 @Component({
     mixins: [template]
 })
-export default class Dropdown extends BaseVueSemantic {
+export default class Selectbox extends BaseVueSemantic {
     @Prop() private multiple!: boolean;
 
     @Prop() private on!: string;
@@ -56,37 +56,41 @@ export default class Dropdown extends BaseVueSemantic {
                 allowTab: this.parseBool(this.allowTab || true),
                 duration: this.duration || 200,
                 transition: this.transition || 'auto',
-                preventEmit: this.parseBool(this.preventEmit || false)
+                preventEmit: this.parseBool(this.preventEmit || false),
+                hasSlot: this.$slots && this.$slots.default && this.$slots.default.length
             }
         };
     }
 
     mounted() {
         const self = this;
-        $(this.$refs.el).dropdown({
-            on: self.elProp.on,
-            clearable: self.elProp.clearable,
-            direction: self.elProp.direction,
-            keepOnScreen: self.elProp.keepOnScreen,
-            context: window,
-            placeholder: self.elProp.placeholder,
-            onChange: (value: any, text: any, $choice: any) => {
-                if (self.elProp.preventEmit) return;
-                self.$emit('onChange', {
-                    value,
-                    text,
-                    $choice
-                });
-            },
-            onShow: () => {
-                if (self.elProp.preventEmit) return;
-                self.$emit('onShow');
-            },
-            onHide: () => {
-                if (self.elProp.preventEmit) return;
-                self.$emit('onHide');
-            }
-        });
+        console.log(self.$slots);
+        setTimeout(() => {
+            $(self.$refs.el).children().dropdown({
+                on: self.elProp.on,
+                clearable: self.elProp.clearable,
+                direction: self.elProp.direction,
+                keepOnScreen: self.elProp.keepOnScreen,
+                context: window,
+                placeholder: self.elProp.placeholder,
+                onChange: (value: any, text: any, $choice: any) => {
+                    if (self.elProp.preventEmit) return;
+                    self.$emit('onChange', {
+                        value,
+                        text,
+                        $choice
+                    });
+                },
+                onShow: () => {
+                    if (self.elProp.preventEmit) return;
+                    self.$emit('onShow');
+                },
+                onHide: () => {
+                    if (self.elProp.preventEmit) return;
+                    self.$emit('onHide');
+                }
+            });
+        }, 1000);
     }
 
     setSelected(value: string | number | Array<any>) {
