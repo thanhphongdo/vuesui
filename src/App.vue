@@ -126,16 +126,16 @@
                     <div>Slot</div>
                 </Selectbox> -->
                 <Selectbox ref="selectbox">
-                    <select class="ui fluid dropdown" v-model="select">
+                    <select class="ui search fluid dropdown" multiple="" name="country">
                         <option value="">State</option>
-                        <option value="AL">Alabama</option>
+                        <option value="AL" selected>Alabama</option>
                         <option value="AK">Alaska</option>
                         <option value="AZ">Arizona</option>
                         <option value="AR">Arkansas</option>
                         <option value="CA">California</option>
                         <option value="CO">Colorado</option>
                         <option value="CT">Connecticut</option>
-                        <option value="DE">Delaware</option>
+                        <option value="DE" selected>Delaware</option>
                         <option value="DC">District Of Columbia</option>
                         <option value="FL">Florida</option>
                         <option value="GA">Georgia</option>
@@ -146,7 +146,7 @@
                         <option value="IA">Iowa</option>
                         <option value="KS">Kansas</option>
                         <option value="KY">Kentucky</option>
-                        <option value="LA">Louisiana</option>
+                        <option value="LA" selected>Louisiana</option>
                         <option value="ME">Maine</option>
                         <option value="MD">Maryland</option>
                         <option value="MA">Massachusetts</option>
@@ -181,10 +181,10 @@
                         <option value="WY">Wyoming</option>
                     </select>
                 </Selectbox>
-                <Selectbox ref="selectbox2" :values="selectValues">
-                    <template v-slot:item="row">
-                        <div class="item" :data-value="row.item.value">{{row.item.name}}</div>
-                    </template>
+                <Selectbox ref="selectbox2" :values="selectValues" multiple="true" fullTextSearch="true" search="true" name="selectbox2" :apiSettings="apiSettings" v-model="select" class="xxx">
+                    <!-- <template v-slot:item="row">
+                        <div class="item" :class="{disabled: row.item.disabled}" :data-value="row.item.value">{{row.item.name}}</div>
+                    </template> -->
                 </Selectbox>
             </form>
         </div>

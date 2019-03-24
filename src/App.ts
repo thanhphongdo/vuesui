@@ -7,6 +7,7 @@ import Checkbox from '@/components/checkbox/checkbox.ts';
 import Dropdown from '@/components/dropdown/dropdown.ts';
 import Selectbox from '@/components/selectbox/selectbox.ts';
 import { SelectboxValueItem } from './components/selectbox/selectbox_interface';
+import { search } from './data/countries';
 @Component({
     mixins: [template],
     components: {
@@ -35,19 +36,39 @@ import { SelectboxValueItem } from './components/selectbox/selectbox_interface';
             ],
             select: [],
             selectValues: [
-                {
-                    name: 'Alabama',
-                    value: 'AL'
-                },
-                {
-                    name: 'Alaska',
-                    value: 'AK'
-                },
-                {
-                    name: 'Arizona',
-                    value: 'AZ'
+                // {
+                //     name: 'Alabama',
+                //     value: 'AL'
+                // },
+                // {
+                //     name: 'Alaska',
+                //     value: 'AK',
+                //     selected: true
+                // },
+                // {
+                //     name: 'group',
+                //     isGroup: true
+                // },
+                // {
+                //     name: 'Arizona',
+                //     value: 'AZ',
+                //     selected: true
+                // }
+            ],
+            apiSettings: {
+                url: 'http://localhost:3000/tagss?query={query}',
+                cache: false,
+                onResponse: (data: any) => {
+                    for (let i = 0; i < data.xxx.length; i++) {
+                        data.xxx[i].name = `<span style="color: red">DDD</span>${data.xxx[i].name}`;
+                    }
+                    console.log(data);
+                    return {
+                        success: data.success,
+                        results: data.xxx
+                    };
                 }
-            ]
+            }
         };
     },
     mounted() {
@@ -55,12 +76,14 @@ import { SelectboxValueItem } from './components/selectbox/selectbox_interface';
         (window as any).app = this;
         (window as any).acordion = this.$refs.acordion;
     },
-    methods: {},
+    methods: {
+        searchCountries: (term: string) => search(term)
+    },
     computed: {},
     destroyed() {
         console.log('destroyed home');
     }
 })
 export default class App extends BaseVue {
-    onOpen(data: any) {}
+    onOpen(data: any) { }
 }
