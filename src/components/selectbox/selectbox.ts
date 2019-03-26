@@ -19,6 +19,28 @@ export default class Selectbox extends BaseVueSemantic {
 
     @Prop() private clearable!: boolean;
 
+    @Prop() private ignoreCase!: boolean;
+
+    @Prop() private allowReselection!: boolean;
+
+    @Prop() private allowAdditions!: boolean;
+
+    @Prop() private hideAdditions!: boolean;
+
+    @Prop() private action!: string;
+
+    @Prop() private minCharacters!: number;
+
+    @Prop() private match!: string;
+
+    @Prop() private selectOnKeydown!: boolean;
+
+    @Prop() private forceSelection!: boolean;
+
+    @Prop() private allowCategorySelection!: boolean;
+
+    @Prop() private placeholder!: string;
+
     @Prop() private fullTextSearch!: string;
 
     @Prop() private direction!: boolean;
@@ -35,9 +57,13 @@ export default class Selectbox extends BaseVueSemantic {
 
     @Prop() private delay!: any;
 
-    @Prop() private placeholder!: string;
+    @Prop() private useLabels!: boolean;
 
-    @Prop() private action!: string;
+    @Prop() private maxSelections!: boolean;
+
+    @Prop() private glyphWidth!: number;
+
+    @Prop() private label!: any;
 
     @Prop() private allowTab!: boolean;
 
@@ -63,6 +89,16 @@ export default class Selectbox extends BaseVueSemantic {
         search: boolean;
         on: string;
         clearable: boolean;
+        ignoreCase: false;
+        allowReselection: boolean;
+        allowAdditions: boolean;
+        hideAdditions: boolean;
+        action: string;
+        minCharacters: number;
+        match: string;
+        selectOnKeydown: boolean;
+        forceSelection: boolean;
+        allowCategorySelection: boolean;
         fullTextSearch: string;
         direction: boolean;
         keepOnScreen: boolean;
@@ -71,8 +107,11 @@ export default class Selectbox extends BaseVueSemantic {
         showOnFocus: boolean;
         keys: any;
         delay: any;
+        useLabels: string;
+        maxSelections: string;
+        glyphWidth: number;
+        label: any;
         placeholder: string;
-        action: string;
         allowTab: boolean;
         duration: number;
         transition: string;
@@ -97,6 +136,10 @@ export default class Selectbox extends BaseVueSemantic {
                 search: this.parseBool(this.search || false),
                 on: this.on || 'click',
                 clearable: this.parseBool(this.clearable || false),
+                ignoreCase: this.ignoreCase || false,
+                allowReselection: this.parseBool(this.allowReselection || false),
+                allowAdditions: this.parseBool(this.allowAdditions || false),
+                hideAdditions: this.parseBool(this.hideAdditions || true),
                 fullTextSearch: this.fullTextSearch || false,
                 direction: this.direction || 'auto',
                 keepOnScreen: this.parseBool(this.keepOnScreen || true),
@@ -105,8 +148,17 @@ export default class Selectbox extends BaseVueSemantic {
                 showOnFocus: this.parseBool(this.showOnFocus || true),
                 keys: this.keys,
                 delay: this.delay,
+                useLabels: this.parseBool(this.useLabels || true),
+                maxSelections: this.parseBool(this.maxSelections || false),
+                glyphWidth: this.glyphWidth || 1.0714,
+                label: this.label,
                 placeholder: this.placeholder || '',
                 action: this.action || 'activate',
+                minCharacters: this.minCharacters || 1,
+                match: this.match || 'both',
+                selectOnKeydown: this.parseBool(this.selectOnKeydown || true),
+                forceSelection: this.parseBool(this.forceSelection || true),
+                allowCategorySelection: this.parseBool(this.allowCategorySelection || false),
                 allowTab: this.parseBool(this.allowTab || true),
                 duration: this.duration || 200,
                 transition: this.transition || 'auto',
@@ -170,10 +222,10 @@ export default class Selectbox extends BaseVueSemantic {
                 if (self.elProp.preventEmit) return;
                 self.$emit('onRemove', { removedValue, removedText, $removedChoice });
             },
-            onLabelCreate: (value: any, text: any) => {
-                if (self.elProp.preventEmit) return;
-                self.$emit('onLabelCreate', { value, text });
-            },
+            // onLabelCreate: (value: any, text: any) => {
+            //     if (self.elProp.preventEmit) return;
+            //     self.$emit('onLabelCreate', { value, text });
+            // },
             onLabelSelect: ($selectedLabels: any) => {
                 if (self.elProp.preventEmit) return;
                 self.$emit('onLabelSelect', { $selectedLabels });
