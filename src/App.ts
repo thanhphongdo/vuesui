@@ -6,6 +6,8 @@ import Accordion from '@/components/accordion/accordion.ts';
 import Checkbox from '@/components/checkbox/checkbox.ts';
 import Dropdown from '@/components/dropdown/dropdown.ts';
 import Selectbox from '@/components/selectbox/selectbox.ts';
+import Modal from '@/components/modal/modal.ts';
+import Sidebar from '@/components/sidebar/sidebar.ts';
 import { SelectboxValueItem } from './components/selectbox/selectbox_interface';
 import { search } from './data/countries';
 @Component({
@@ -14,7 +16,9 @@ import { search } from './data/countries';
         Accordion,
         Checkbox,
         Dropdown,
-        Selectbox
+        Selectbox,
+        Modal,
+        Sidebar
     },
     data() {
         return {
@@ -77,7 +81,10 @@ import { search } from './data/countries';
         (window as any).acordion = this.$refs.acordion;
     },
     methods: {
-        searchCountries: (term: string) => search(term)
+        searchCountries: (term: string) => search(term),
+        onShowMenu: () => {
+            console.log('onShowMenu');
+        }
     },
     computed: {},
     destroyed() {
